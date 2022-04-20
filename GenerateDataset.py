@@ -1,8 +1,8 @@
 #Importing Required Libraries
 import random
 
-# Getting 10,000,000 Integer Numbers from 1 to 10,000,000
-data = [str(i) for i in range(1,100+1)]
+# Getting 10,000,000 Numbers from 1 to 10,000,000
+data = [str(i) for i in range(1,10000000+1)]
 
 # Randomly Shuffling the Data
 random.shuffle(data)
