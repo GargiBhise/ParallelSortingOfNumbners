@@ -26,10 +26,11 @@ total_time = end - start
 time_log['Dataset Generation'] = total_time.total_seconds()
 
 # Plotting RAM Usage % v/s CPU % Usage Plot for Analysis
-plt.plot(ram_usage , cpu_usage)
-plt.xlabel('RAM Usage %')
-plt.ylabel('CPU Usage %')
-plt.savefig('Plots/DatasetGeneration_RAMvsCPU.png')
+plt.plot(cpu_usage,ram_usage)
+plt.xlabel('CPU Usage %')
+plt.ylabel('RAM Usage %')
+plt.savefig('Plots/DatasetGeneration_RAMvsCPU.png', dpi=150)
+plt.clf()
 
 # Dataset Shuffle Start Time
 start = datetime.now()
@@ -54,12 +55,10 @@ end = datetime.now()
 total_time = end - start
 time_log['Dataset To CSV'] = total_time.total_seconds()
 
-# dataset_filesize = os.path.getsize('Data.csv')
-# dataset_filesize = str(round((dataset_filesize/1024/1024),3))+' MegaByte'
-
 # Plotting Time Taken For Each Step for Analysis
 x = list(time_log.keys())
 y = list(time_log.values())
-plt.bar(range(len(time_log)), y, tick_label=x)
+plt.bar(range(len(time_log)), height=y, tick_label=x)
 plt.ylabel('Time Taken in Seconds')
-plt.savefig('Plots/DatasetGenerationAndExporting_TimeLog.png')
+plt.savefig('Plots/DatasetGenerationAndExporting_TimeLog.png', dpi=150)
+plt.clf()
