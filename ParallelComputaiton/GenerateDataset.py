@@ -14,7 +14,7 @@ def generate_data(size,filename):
     random.shuffle(data)
 
     # Saving the Generated Data in a CSV File
-    f = open(filename,'w')
+    f = open('../Datasets/'+filename,'w')
     for ele in data:
       f.write(ele)
       f.write('\n')
@@ -29,6 +29,10 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
   executor.submit(generate_data,100000,'HundredThousand.csv')
   executor.submit(generate_data,1000000,'OneMillion.csv')
   executor.submit(generate_data,10000000,'TenMillion.csv')
+# with concurrent.futures.ProcessPoolExecutor() as executor:
+#   executor.submit(generate_data,100000000,'HundredMillion.csv')
+#   executor.submit(generate_data,500000000,'FiveHundredMillion.csv')
+#   executor.submit(generate_data,1000000000,'OneBillion.csv')
 generate_data(100000000,'HundredMillion.csv')
 end = datetime.now()
 time = end - start

@@ -13,7 +13,7 @@ time_log = {'Data Size':[],'Parallel Quick+Merge':[],'Sequential Merge':[],'Sequ
 
 def sort_log(filename):
 
-    with open(filename, newline='\n') as f:
+    with open('../Datasets/'+filename, newline='\n') as f:
         reader = csv.reader(f)
         data = list(reader)
         data = [int(i[0]) for i in data]
@@ -73,6 +73,8 @@ plt.clf()
 print('End Graph Plotting')
 
 datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv']
+
+# datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv','FiveHundredMillion.csv','OneBillion.csv']
 
 for files in datasets:
     sort_log(files)
