@@ -7,7 +7,7 @@ from datetime import datetime
 from ImportData import HundredThousand,OneMillion,TenMillion,HundredMillion
 print('Dataset Import Successful')
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(1000000000)
 
 timelog_quick = {}
 timelog_merge = {}
@@ -52,20 +52,12 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     chunk3 = list(data3.result())
     data4 = executor.submit(dummy_parallel,data[int(len(data)*0.75):])
     chunk4 = list(data4.result())
-    data5 = executor.submit(dummy_parallel,chunk1+chunk2)
-    chunk5 = list(data5.result())
-    data6 = executor.submit(dummy_parallel,chunk3+chunk4)
-    chunk6 = list(data6.result())
-    final_data = chunk5+chunk6
+    final_data = chunk1+chunk2+chunk3+chunk4
     mergeSort(final_data)
     end = datetime.now()
-    if final_data==sorted(data):
-        print('Parallel Sort {} Done'.format(len(data)))
-        time = end - start
-        timelog_parallel[len(data)] = time.total_seconds()
-    else:
-        timelog_parallel[len(data)] = -1
-        print('Parallel Sort {} Fail'.format(len(data)))
+    time = end - start
+    timelog_parallel[len(data)] = time.total_seconds()
+    print('Parallel Sort {} Done'.format(len(data)))
 
     data = OneMillion
     start = datetime.now()
@@ -77,20 +69,12 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     chunk3 = list(data3.result())
     data4 = executor.submit(dummy_parallel,data[int(len(data)*0.75):])
     chunk4 = list(data4.result())
-    data5 = executor.submit(dummy_parallel,chunk1+chunk2)
-    chunk5 = list(data5.result())
-    data6 = executor.submit(dummy_parallel,chunk3+chunk4)
-    chunk6 = list(data6.result())
-    final_data = chunk5+chunk6
+    final_data = chunk1+chunk2+chunk3+chunk4
     mergeSort(final_data)
     end = datetime.now()
-    if final_data==sorted(data):
-        print('Parallel Sort {} Done'.format(len(data)))
-        time = end - start
-        timelog_parallel[len(data)] = time.total_seconds()
-    else:
-        timelog_parallel[len(data)] = -1
-        print('Parallel Sort {} Fail'.format(len(data)))
+    time = end - start
+    timelog_parallel[len(data)] = time.total_seconds()
+    print('Parallel Sort {} Done'.format(len(data)))
 
     data = TenMillion
     start = datetime.now()
@@ -102,20 +86,12 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     chunk3 = list(data3.result())
     data4 = executor.submit(dummy_parallel,data[int(len(data)*0.75):])
     chunk4 = list(data4.result())
-    data5 = executor.submit(dummy_parallel,chunk1+chunk2)
-    chunk5 = list(data5.result())
-    data6 = executor.submit(dummy_parallel,chunk3+chunk4)
-    chunk6 = list(data6.result())
-    final_data = chunk5+chunk6
+    final_data = chunk1+chunk2+chunk3+chunk4
     mergeSort(final_data)
     end = datetime.now()
-    if final_data==sorted(data):
-        print('Parallel Sort {} Done'.format(len(data)))
-        time = end - start
-        timelog_parallel[len(data)] = time.total_seconds()
-    else:
-        timelog_parallel[len(data)] = -1
-        print('Parallel Sort {} Fail'.format(len(data)))
+    time = end - start
+    timelog_parallel[len(data)] = time.total_seconds()
+    print('Parallel Sort {} Done'.format(len(data)))
 
     data = HundredMillion
     start = datetime.now()
@@ -127,20 +103,12 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     chunk3 = list(data3.result())
     data4 = executor.submit(dummy_parallel,data[int(len(data)*0.75):])
     chunk4 = list(data4.result())
-    data5 = executor.submit(dummy_parallel,chunk1+chunk2)
-    chunk5 = list(data5.result())
-    data6 = executor.submit(dummy_parallel,chunk3+chunk4)
-    chunk6 = list(data6.result())
-    final_data = chunk5+chunk6
+    final_data = chunk1+chunk2+chunk3+chunk4
     mergeSort(final_data)
     end = datetime.now()
-    if final_data==sorted(data):
-        print('Parallel Sort {} Done'.format(len(data)))
-        time = end - start
-        timelog_parallel[len(data)] = time.total_seconds()
-    else:
-        timelog_parallel[len(data)] = -1
-        print('Parallel Sort {} Fail'.format(len(data)))
+    time = end - start
+    timelog_parallel[len(data)] = time.total_seconds()
+    print('Parallel Sort {} Done'.format(len(data)))
 
     data = HundredThousand
     executor.submit(dummy_sequential,data,'Quick')
