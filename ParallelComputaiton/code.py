@@ -60,6 +60,14 @@ def sort_log(filename):
         time_log['Sequential Quick'] = None
     print('End Sequential Quick Sort for ',filename)
 
+
+datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv']
+
+# datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv','FiveHundredMillion.csv','OneBillion.csv']
+
+for files in datasets:
+    sort_log(files)
+
 # Plotting Time Logs for Each Step
 print('Begin Graph Plotting')
 x = list(time_log.keys())
@@ -69,11 +77,3 @@ plt.ylabel('Time Taken in Seconds')
 plt.title('Total Execution Time of Each Step')
 plt.savefig('Plots/TimeLog.png', dpi=150)
 print('End Graph Plotting')
-
-datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv']
-
-# datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv','FiveHundredMillion.csv','OneBillion.csv']
-
-for files in datasets:
-    sort_log(files)
-
