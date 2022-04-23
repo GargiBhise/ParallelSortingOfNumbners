@@ -1,5 +1,7 @@
 #Importing Required Libraries
 import random
+import concurrent.futures
+from datetime import datetime
 
 def generate_data(size,filename):
   try:
@@ -16,15 +18,19 @@ def generate_data(size,filename):
     for ele in data:
       f.write(ele)
       f.write('\n')
-    print('Successfully Generated',filename)
+    print('Successfully Generated'+filename+'\n')
   except:
-    print('Error Generating',filename)
+    print('Error Generating'+filename+'\n')
 
-
+start = datetime.now()
 # Generate Datasets
-generate_data(1000,'Thousand.csv')
-generate_data(100000,'HundredThousand.csv')
-generate_data(1000000,'OneMillion.csv')
-generate_data(10000000,'TenMillion.csv')
+with concurrent.futures.ProcessPoolExecutor() as executor:
+  executor.submit(generate_data,1000,'Thousand.csv')
+  executor.submit(generate_data,100000,'HundredThousand.csv')
+  executor.submit(generate_data,1000000,'OneMillion.csv')
+  executor.submit(generate_data,10000000,'TenMillion.csv')
 generate_data(100000000,'HundredMillion.csv')
-
+end = datetime.now()
+time = end - start
+time = time.total_seconds()
+print('Total Time to Generate Datasets :',time)
