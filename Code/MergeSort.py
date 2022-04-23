@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 import concurrent.futures
 sys.setrecursionlimit(20000000)

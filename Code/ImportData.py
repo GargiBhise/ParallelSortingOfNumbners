@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import csv
 
 with open('../Datasets/HundredThousand.csv', newline='\n') as f:
