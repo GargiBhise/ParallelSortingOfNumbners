@@ -62,14 +62,12 @@ def sort_log(filename):
 
 # Plotting Time Logs for Each Step
 print('Begin Graph Plotting')
-plt.clf()
 x = list(time_log.keys())
 y = list(time_log.values())
 plt.bar(range(len(time_log)), height=y, tick_label=x)
 plt.ylabel('Time Taken in Seconds')
 plt.title('Total Execution Time of Each Step')
 plt.savefig('Plots/TimeLog.png', dpi=150)
-plt.clf()
 print('End Graph Plotting')
 
 datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv']
