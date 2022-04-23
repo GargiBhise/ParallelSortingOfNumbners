@@ -19,7 +19,6 @@ def sort_log(filename):
         reader = csv.reader(f)
         data = list(reader)
         data = [int(i[0]) for i in data]
-        time_log['Data Size'].append(len(data))
     print('\n',filename,' Imported')
 
     # Parallel Sorting
