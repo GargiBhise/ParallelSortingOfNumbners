@@ -42,6 +42,7 @@ def dummy_sequential(data,algo):
 with concurrent.futures.ProcessPoolExecutor() as executor:
 
     data = HundredThousand
+    start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)])
     chunk1 = list(data1.result())
     data2 = executor.submit(dummy_parallel,data[int(len(data)*0.25):int(len(data)*0.5)])
@@ -62,6 +63,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
         print('Parallel Sort {} Fail',len(data))
 
     data = OneMillion
+    start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)])
     chunk1 = list(data1.result())
     data2 = executor.submit(dummy_parallel,data[int(len(data)*0.25):int(len(data)*0.5)])
@@ -82,6 +84,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
         print('Parallel Sort {} Fail',len(data))
 
     data = TenMillion
+    start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)])
     chunk1 = list(data1.result())
     data2 = executor.submit(dummy_parallel,data[int(len(data)*0.25):int(len(data)*0.5)])
@@ -102,6 +105,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
         print('Parallel Sort {} Fail',len(data))
 
     data = HundredMillion
+    start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)])
     chunk1 = list(data1.result())
     data2 = executor.submit(dummy_parallel,data[int(len(data)*0.25):int(len(data)*0.5)])
