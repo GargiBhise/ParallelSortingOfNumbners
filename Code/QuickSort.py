@@ -1,25 +1,36 @@
-def partition(arr, low, high):
-    i = (low-1)         # index of smaller element
-    pivot = arr[high]     # pivot
-    for j in range(low, high):
-        # If current element is smaller than or
-        # equal to pivot
-        if arr[j] <= pivot:
-            # increment index of smaller element
-            i = i+1
-            arr[i], arr[j] = arr[j], arr[i]
-    arr[i+1], arr[high] = arr[high], arr[i+1]
-    return (i+1)
+import sys
+import concurrent.futures
+sys.setrecursionlimit(20000000)
 
-def quickSort(arr, low, high):
-    if len(arr) == 1:
+parallel = False
+def quickSort(arr,parallel):
+
+    elements = len(arr)
+    
+    #Base case
+    if elements < 2:
         return arr
-    if low < high:
-        # pi is partitioning index, arr[p] is now
-        # at right place
-        pi = partition(arr, low, high)
- 
-        # Separately sort elements before
-        # partition and after partition
-        quickSort(arr, low, pi-1)
-        quickSort(arr, pi+1, high)
+    
+    current_position = 0 #Position of the partitioning element
+
+    for i in range(1, elements): #Partitioning loop
+         if arr[i] <= arr[0]:
+              current_position += 1
+              temp = arr[i]
+              arr[i] = arr[current_position]
+              arr[current_position] = temp
+
+    temp = arr[0]
+    arr[0] = arr[current_position] 
+    arr[current_position] = temp #Brings pivot to it's appropriate position
+
+    if parallel==False:
+        left = quickSort(arr[0:current_position]) #Sorts the elements to the left of pivot
+        right = quickSort(arr[current_position+1:elements]) #sorts the elements to the right of pivot
+    elif parallel==True:
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            left = executor.submit(quickSort,arr[0:current_position]) #Sorts the elements to the left of pivot
+            right = executor.submit(quickSort,arr[current_position+1:elements]) #sorts the elements to the right of pivot
+    arr = left + [arr[current_position]] + right #Merging everything together
+    
+    return arr
