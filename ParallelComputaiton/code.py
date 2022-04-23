@@ -23,7 +23,7 @@ def sort_log(filename):
     # Parallel Sorting
     print('Begin Parallel Sorting for ',filename)
     start = datetime.now()
-    if parallel_sort():
+    if parallel_sort(data):
         end = datetime.now()
         time = end - start
         parallel_sort_time = time.total_seconds()
