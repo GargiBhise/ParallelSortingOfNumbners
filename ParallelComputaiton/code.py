@@ -6,7 +6,7 @@ from QuickSort import quickSort
 from MergeSort import mergeSort
 from ParallelSort import parallel_sort
 
-sys.setrecursionlimit(1000000)
+sys.setrecursionlimit(5000)
 
 final_data = []
 time_log = {'Data Size':[],'Parallel Quick+Merge':[],'Sequential Merge':[],'Sequential Quick':[]}
@@ -18,10 +18,9 @@ def sort_log(filename):
         data = list(reader)
         data = [int(i[0]) for i in data]
         time_log['Data Size'].append(len(data))
-    print(filename,' Imported')
+    print('\n',filename,' Imported')
 
     # Parallel Sorting
-    print('Begin Parallel Sorting for ',filename)
     start = datetime.now()
     if parallel_sort(data):
         end = datetime.now()
@@ -30,10 +29,9 @@ def sort_log(filename):
         time_log['Parallel Quick+Merge'].append(parallel_sort_time)
     else:
         time_log['Parallel Quick+Merge'].append(None)
-    print('End Parallel Sorting for ',filename)
+    print('Completed Parallel Sorting for ',filename)
 
     # Sequential Merge Sort
-    print('Begin Sequential Merge Sort for ',filename)
     start = datetime.now()
     final_data = data
     try:
@@ -44,10 +42,9 @@ def sort_log(filename):
         time_log['Sequential Merge'] = sequential_sort_time
     except:
         time_log['Sequential Merge'] = None
-    print('End Sequential Merge Sort for ',filename)
+    print('Completed Sequential Merge Sort for ',filename)
 
     # Sequential Quick Sort
-    print('Begin Sequential Quick Sort for ',filename)
     start = datetime.now()
     final_data = data
     try:
@@ -58,7 +55,7 @@ def sort_log(filename):
         time_log['Sequential Quick'] = sequential_sort_time
     except:
         time_log['Sequential Quick'] = None
-    print('End Sequential Quick Sort for ',filename)
+    print('Completed Sequential Quick Sort for ',filename)
 
 
 datasets = ['Thousand.csv','HundredThousand.csv','OneMillion.csv','TenMillion.csv','HundredMillion.csv']
