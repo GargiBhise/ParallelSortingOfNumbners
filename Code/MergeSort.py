@@ -13,12 +13,12 @@ def mergeSort(myList,parallel):
 
         # Recursive call on each half
         if parallel == False:
-            mergeSort(left)
-            mergeSort(right)
+            mergeSort(left,False)
+            mergeSort(right,False)
         elif parallel == True:
             with concurrent.futures.ProcessPoolExecutor() as executor:
-                executor.submit(mergeSort,left)
-                executor.submit(mergeSort,right)
+                executor.submit(mergeSort,left,True)
+                executor.submit(mergeSort,right,True)
 
         # Two iterators for traversing the two halves
         i = 0

@@ -20,9 +20,9 @@ def generate_data(size,filename):
     for ele in data:
       f.write(ele)
       f.write('\n')
-    print('Successfully Generated'+filename+'\n')
+    print('Successfully Generated '+filename+'\n')
   except:
-    print('Error Generating'+filename+'\n')
+    print('Error Generating '+filename+'\n')
 
 start = datetime.now()
 # Generate Datasets

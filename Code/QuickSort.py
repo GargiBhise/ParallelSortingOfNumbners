@@ -27,12 +27,12 @@ def quickSort(arr,parallel):
     arr[current_position] = temp #Brings pivot to it's appropriate position
 
     if parallel==False:
-        left = quickSort(arr[0:current_position]) #Sorts the elements to the left of pivot
-        right = quickSort(arr[current_position+1:elements]) #sorts the elements to the right of pivot
+        left = quickSort(arr[0:current_position],False) #Sorts the elements to the left of pivot
+        right = quickSort(arr[current_position+1:elements],False) #sorts the elements to the right of pivot
     elif parallel==True:
         with concurrent.futures.ProcessPoolExecutor() as executor:
-            left = executor.submit(quickSort,arr[0:current_position]) #Sorts the elements to the left of pivot
-            right = executor.submit(quickSort,arr[current_position+1:elements]) #sorts the elements to the right of pivot
+            left = executor.submit(quickSort,arr[0:current_position],True) #Sorts the elements to the left of pivot
+            right = executor.submit(quickSort,arr[current_position+1:elements],True) #sorts the elements to the right of pivot
     arr = left + [arr[current_position]] + right #Merging everything together
     
     return arr
