@@ -440,7 +440,7 @@ print('MPMT Quick Sort : ',Quick_MPMT,'\n')
 
 print('Plotting and Exporting Begin')
 
-x = ['Hundred Thousand','One Million','Ten Million','Fifty Million','Hundred Million']
+x = ['100K','1M','10M','50M','100M']
 y0 = [0 for _ in range(len(x))]
 
 Quick_SPST = [Quick_SPST['HundredThousand'],Quick_SPST['OneMillion'],Quick_SPST['TenMillion'],Quick_SPST['FiftyMillion'],Quick_SPST['HundredMillion']]
