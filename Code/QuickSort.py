@@ -1,34 +1,41 @@
 import concurrent.futures
+import sys
+import random 
 
-def quickSort(arr,process,thread):
-    elements = len(arr)
-    #Base case
-    if elements < 2:
-      return arr
-    current_position = 0 #Position of the partitioning element
-    for i in range(1, elements): #Partitioning loop
-        if arr[i] <= arr[0]:
-            current_position += 1
-            temp = arr[i]
-            arr[i] = arr[current_position]
-            arr[current_position] = temp
-    temp = arr[0]
-    arr[0] = arr[current_position] 
-    arr[current_position] = temp #Brings pivot to it's appropriate position
-    if process == True and thread == True:
+sys.setrecursionlimit(1000000000)
+
+def sub_partition(array, start, end, idx_pivot):
+    'returns the position where the pivot winds up'
+    if not (start <= idx_pivot <= end):
+        raise ValueError('idx pivot must be between start and end')
+    array[start], array[idx_pivot] = array[idx_pivot], array[start]
+    pivot = array[start]
+    i = start + 1
+    j = start + 1
+    while j <= end:
+        if array[j] <= pivot:
+            array[j], array[i] = array[i], array[j]
+            i += 1
+        j += 1
+    array[start], array[i - 1] = array[i - 1], array[start]
+    return i - 1
+
+def quickSort(array, process, thread, start=0, end=None):
+    if end is None:
+        end = len(array) - 1
+    if end - start < 1:
+        return
+    idx_pivot = random.randint(start, end)
+    i = sub_partition(array, start, end, idx_pivot)
+    #print array, i, idx_pivot
+    if process == True and thread==True:
       with concurrent.futures.ProcessPoolExecutor() as executor:
-        p1 = executor.submit(quickSort,arr[0:current_position],False,True) #Sorts the elements to the left of pivot
-        p2 = executor.submit(quickSort,arr[current_position+1:elements],False,True) #sorts the elements to the right of pivot
-        left = p1.result()
-        right = p2.result()
-    elif process == False and thread == True:
+        executor.submit(quickSort,array, start, i - 1,False,True)
+        executor.submit(quickSort,array, i + 1, end,False,True)
+    elif process == False and thread==True:
       with concurrent.futures.ThreadPoolExecutor() as executor:
-        p1 = executor.submit(quickSort,arr[0:current_position],False,False) #Sorts the elements to the left of pivot
-        p2 = executor.submit(quickSort,arr[current_position+1:elements],False,False) #sorts the elements to the right of pivot
-        left = p1.result()
-        right = p2.result()
-    elif process == False and thread == False:
-      left = quickSort(arr[0:current_position],False,False) #Sorts the elements to the left of pivot
-      right = quickSort(arr[current_position+1:elements],False,False) #sorts the elements to the right of pivot
-    arr = left + [arr[current_position]] + right #Merging everything together
-    return arr
+        executor.submit(quickSort,array, start, i - 1,False,False)
+        executor.submit(quickSort,array, i + 1, end,False,False)
+    elif process==False and thread==False:
+      quickSort(array, start, i - 1,False)
+      quickSort(array, i + 1, end,False)    
