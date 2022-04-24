@@ -53,6 +53,7 @@ def dummy_sequential(data,algo,size,args):
 with concurrent.futures.ProcessPoolExecutor() as executor:
     # Parallel Merge Sort (Data Divided and Sorted in Parallel ; Algorithm in Executed Sequentially)
     data = HundredThousand
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -77,6 +78,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_merge['HundredThousand'] = time.total_seconds()
     print('Parallel Merge Sort HundredThousand Done')
     data = OneMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -101,6 +103,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_merge['OneMillion'] = time.total_seconds()
     print('Parallel Merge Sort OneMillion Done')
     data = TenMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -126,6 +129,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
 
     # Parallel Quick Sort (Data Divided and Sorted in Parallel ; Algorithm in Executed Sequentially)
     data = HundredThousand
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(quickSort,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -150,6 +154,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_quick['HundredThousand'] = time.total_seconds()
     print('Parallel Quick Sort HundredThousand Done')
     data = OneMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(quickSort,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -174,6 +179,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_quick['OneMillion'] = time.total_seconds()
     print('Parallel Quick Sort OneMillion Done')
     data = TenMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(quickSort,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -223,6 +229,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     # Parallel Quick+Merge Sort 
     # Data Divided and Sorted in Parallel using Quick Sort; Chunks Merged Using Merge Sort ; Algorithm in Executed Sequentially
     data = HundredThousand
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(quickSort,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -247,6 +254,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_quickmerge['HundredThousand'] = time.total_seconds()
     print('Parallel Quick(Chunks)+Merge(Combined) Sort HundredThousand Done')
     data = OneMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(quickSort,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -271,6 +279,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_quickmerge['OneMillion'] = time.total_seconds()
     print('Parallel Quick(Chunks)+Merge(Combined) Sort OneMillion Done')
     data = TenMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(quickSort,data[:int(len(data)*0.25)],False)
     chunk1 = list(data1.result())
@@ -298,6 +307,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     # Parallel Merge+Quick Sort 
     # Data Divided and Sorted in Parallel using Merge Sort; Chunks Merged Using Quick Sort ; Algorithm in Executed Sequentially
     data = HundredThousand
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)],'Merge',False)
     chunk1 = list(data1.result())
@@ -322,6 +332,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_mergequick['HundredThousand'] = time.total_seconds()
     print('Parallel Merge(Chunks)+Quick(Combined) Sort HundredThousand Done')
     data = OneMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)],'Merge',False)
     chunk1 = list(data1.result())
@@ -346,6 +357,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
     timelog_parallel_mergequick['OneMillion'] = time.total_seconds()
     print('Parallel Merge(Chunks)+Quick(Combined) Sort OneMillion Done')
     data = TenMillion
+    final_data = []
     start = datetime.now()
     data1 = executor.submit(dummy_parallel,data[:int(len(data)*0.25)],'Merge',False)
     chunk1 = list(data1.result())
