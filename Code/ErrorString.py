@@ -49,5 +49,4 @@ Segmentation fault (core dumped)
 
 SPMT Quick Sort HundredThousand Begin
 Segmentation fault (core dumped)
-
 '''
