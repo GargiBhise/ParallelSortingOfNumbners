@@ -1,4 +1,7 @@
+import sys
 import concurrent.futures
+
+sys.setrecursionlimit(1000000000)
 
 def mergeSort(myList,process,thread):
     if len(myList) > 1:
