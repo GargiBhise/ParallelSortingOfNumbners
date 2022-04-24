@@ -5,5 +5,3 @@ __pycache__/
 .vscode/
 .ipynb_checkpoints
 Icon?
-*.ipynb
-*.csv
