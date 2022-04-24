@@ -349,75 +349,6 @@ except:
   print('MPMT Merge Sort HundredMillion Failed')
 print('MPMT Merge Sort : ',Merge_MPMT,'\n')
 
-Quick_SPST = {}
-# Single-Process Single-Thread Quick Sort
-try:
-  print('SPST Quick Sort HundredThousand Begin')
-  data = HundredThousand
-  start = datetime.now()
-  quickSort(data,False,False)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_SPST['HundredThousand'] = time.total_seconds()
-  print('SPST Quick Sort HundredThousand Done')
-except:
-  Quick_SPST['HundredThousand'] = -1
-  print('SPST Quick Sort HundredThousand Failed')
-try:
-  print('SPST Quick Sort OneMillion Begin')
-  data = OneMillion
-  start = datetime.now()
-  quickSort(data,False,False)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_SPST['OneMillion'] = time.total_seconds()
-  print('SPST Quick Sort OneMillion Done')
-except:
-  Quick_SPST['OneMillion'] = -1
-  print('SPST Quick Sort OneMillion Failed')
-try:
-  print('SPST Quick Sort TenMillion Begin')
-  data = TenMillion
-  start = datetime.now()
-  quickSort(data,False,False)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_SPST['TenMillion'] = time.total_seconds()
-  print('SPST Quick Sort TenMillion Done')
-except:
-  Quick_SPST['TenMillion'] = -1
-  print('SPST Quick Sort TenMillion Failed')
-try:
-  print('SPST Quick Sort FiftyMillion Begin')
-  data = FiftyMillion
-  start = datetime.now()
-  quickSort(data,False,False)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_SPST['FiftyMillion'] = time.total_seconds()
-  print('SPST Quick Sort FiftyMillion Done')
-except:
-  Quick_SPST['FiftyMillion'] = -1
-  print('SPST Quick Sort FiftyMillion Failed')
-try:
-  print('SPST Quick Sort HundredMillion Begin')
-  data = HundredMillion
-  start = datetime.now()
-  quickSort(data,False,False)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_SPST['HundredMillion'] = time.total_seconds()
-  print('SPST Quick Sort HundredMillion Done')
-except:
-  Quick_SPST['HundredMillion'] = -1
-  print('SPST Quick Sort HundredMillion Failed')
-print('SPST Quick Sort : ',Quick_SPST,'\n')
-
 Quick_SPMT = {}
 # Single-Process Multi-Thread Quick Sort
 try:
@@ -560,7 +491,7 @@ print('Plotting and Exporting Begin')
 x = ['Hundred Thousand','One Million','Ten Million','Fifty Million','Hundred Million']
 y0 = [0 for _ in range(len(x))]
 
-Quick_SPST = [Quick_SPST['HundredThousand'],Quick_SPST['OneMillion'],Quick_SPST['TenMillion'],Quick_SPST['FiftyMillion'],Quick_SPST['HundredMillion']]
+Quick_SPST = [-1,-1,-1,-1]
 Quick_SPMT = [Quick_SPMT['HundredThousand'],Quick_SPMT['OneMillion'],Quick_SPMT['TenMillion'],Quick_SPMT['FiftyMillion'],Quick_SPMT['HundredMillion']]
 Quick_MPMT = [Quick_MPMT['HundredThousand'],Quick_MPMT['OneMillion'],Quick_MPMT['TenMillion'],Quick_MPMT['FiftyMillion'],Quick_MPMT['HundredMillion']]
 
