@@ -8,7 +8,6 @@ import concurrent.futures
 import matplotlib.pyplot as plt
 
 def generate_data(size,filename):
-  print('Generating Datasets')
   try:
     # Getting Numbers for Given Range
     data = []
@@ -26,6 +25,7 @@ def generate_data(size,filename):
     print('Error Generating '+filename)
 start = datetime.now()
 # Generate Datasets
+print('Generating Datasets')
 with concurrent.futures.ProcessPoolExecutor() as executor:
   executor.submit(generate_data,100000,'HundredThousand.csv')
   executor.submit(generate_data,1000000,'OneMillion.csv')
