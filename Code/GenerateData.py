@@ -16,9 +16,11 @@ def generate_data(size,filename):
     print('Error Generating ',filename)
 
 if __name__ == "__main__":
+    print('Generating Data Begin')
     with concurrent.futures.ProcessPoolExecutor() as executor:
         executor.submit(generate_data,100000,'HundredThousand.csv')
         executor.submit(generate_data,1000000,'OneMillion.csv')
         executor.submit(generate_data,10000000,'TenMillion.csv')
         executor.submit(generate_data,50000000,'FiftyMillion.csv')
         executor.submit(generate_data,100000000,'HundredMillion.csv')
+    print('Generating Data Done')
