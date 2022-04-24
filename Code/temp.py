@@ -1,14 +1,25 @@
 import sys
 from datetime import datetime
-# import matplotlib.pyplot as plt
+import concurrent.futures
 
-from ImportData import HundredThousand,OneMillion,TenMillion,FiftyMillion,HundredMillion
+from ImportData import read_data
 from QuickSort import quickSort
 from ErrorString import errorstr
 print(errorstr)
 # from MergeSort import mergeSort
 
 sys.setrecursionlimit(1000000000)
+with concurrent.futures.ProcessPoolExecutor() as executor:
+  ht = executor.submit(read_data,'HundredThousand.csv')
+  om = executor.submit(read_data,'OneMillion.csv')
+  tm = executor.submit(read_data,'TenMillion.csv')
+  fm = executor.submit(read_data,'FiftyMillion.csv')
+  hm = executor.submit(read_data,'HundredMillion.csv')
+  HundredThousand = ht.result()
+  OneMillion = om.result()
+  TenMillion = tm.result()
+  FiftyMillion = fm.result()
+  HundredMillion = hm.result()
 
 Quick_MPMT = {}
 # Multi-Process Multi-Thread Quick Sort
