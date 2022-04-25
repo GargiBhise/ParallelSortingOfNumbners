@@ -29,13 +29,13 @@ def quickSort(array, process, thread, start=0, end=None):
     i = sub_partition(array, start, end, idx_pivot)
     #print array, i, idx_pivot
     if process == True and thread==True:
-      with concurrent.futures.ProcessPoolExecutor() as executor:
-        executor.submit(quickSort,array, start, i - 1,False,True)
-        executor.submit(quickSort,array, i + 1, end,False,True)
+      with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.submit(quickSort,array,False,True, start, i - 1)
+        executor.submit(quickSort,array,False,True, i + 1, end)
     elif process == False and thread==True:
       with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.submit(quickSort,array, start, i - 1,False,False)
-        executor.submit(quickSort,array, i + 1, end,False,False)
+        executor.submit(quickSort,array,False,False, start, i - 1)
+        executor.submit(quickSort,array,False,False, i + 1, end)
     elif process==False and thread==False:
-      quickSort(array, start, i - 1,False)
-      quickSort(array, i + 1, end,False)    
+      quickSort(array,False,False, start, i - 1)
+      quickSort(array,False,False, i + 1, end)  
