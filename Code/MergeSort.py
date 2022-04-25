@@ -3,22 +3,13 @@ import concurrent.futures
 
 sys.setrecursionlimit(1000000000)
 
-def mergeSort(myList,process,thread):
+def mergeSort(myList):
     if len(myList) > 1:
         mid = len(myList) // 2
         left = myList[:mid]
         right = myList[mid:]
-        if process == True and thread==True:
-            with concurrent.futures.ProcessPoolExecutor() as executor:
-                executor.submit(mergeSort,left,False,True)
-                executor.submit(mergeSort,right,False,True)
-        elif process == False and thread==True:
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                executor.submit(mergeSort,left,False,False)
-                executor.submit(mergeSort,right,False,False)
-        elif process == False and thread==False:
-            mergeSort(left,False,False)
-            mergeSort(right,False,False)
+        mergeSort(left)
+        mergeSort(right)
         # Two iterators for traversing the two halves
         i = 0
         j = 0
