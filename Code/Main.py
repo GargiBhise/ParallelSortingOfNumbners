@@ -6,6 +6,7 @@ import concurrent.futures
 from ImportData import read_data
 from QuickSort import quickSort
 from MergeSort import mergeSort
+from ParallelMerge import merge_sort
 
 sys.setrecursionlimit(1000000000)
 
@@ -26,439 +27,322 @@ end = datetime.now()
 time = end - start
 print('Time Elapsed (Seconds) To Import Data : ',time.total_seconds())
 
-Merge_SPST = {}
-# Single-Process Single-Thread Merge Sort
+# Sequential Merge Sort
+Merge_Sequential = {}
 try:
-  print('SPST Merge Sort HundredThousand Begin')
-  data = HundredThousand
+  print('Sequential Merge Sort HundredThousand Begin')
+  data = HundredThousand.copy()
   start = datetime.now()
-  mergeSort(data,False,False)
+  mergeSort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPST['HundredThousand'] = time.total_seconds()
-  print('SPST Merge Sort HundredThousand Done')
+  Merge_Sequential['HundredThousand'] = time.total_seconds()
+  print('Sequential Merge Sort HundredThousand Done')
 except:
-  Merge_SPST['HundredThousand'] = 0
-  print('SPST Merge Sort HundredThousand Failed')
+  Merge_Sequential['HundredThousand'] = 0
+  print('Sequential Merge Sort HundredThousand Failed')
 try:
-  print('SPST Merge Sort OneMillion Begin')
-  data = OneMillion
+  print('Sequential Merge Sort OneMillion Begin')
+  data = OneMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,False)
+  mergeSort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPST['OneMillion'] = time.total_seconds()
-  print('SPST Merge Sort OneMillion Done')
+  Merge_Sequential['OneMillion'] = time.total_seconds()
+  print('Sequential Merge Sort OneMillion Done')
 except:
-  Merge_SPST['OneMillion'] = 0
-  print('SPST Merge Sort OneMillion Failed')
+  Merge_Sequential['OneMillion'] = 0
+  print('Sequential Merge Sort OneMillion Failed')
 try:
-  print('SPST Merge Sort TenMillion Begin')
-  data = TenMillion
+  print('Sequential Merge Sort TenMillion Begin')
+  data = TenMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,False)
+  mergeSort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPST['TenMillion'] = time.total_seconds()
-  print('SPST Merge Sort TenMillion Done')
+  Merge_Sequential['TenMillion'] = time.total_seconds()
+  print('Sequential Merge Sort TenMillion Done')
 except:
-  Merge_SPST['TenMillion'] = 0
-  print('SPST Merge Sort TenMillion Failed')
+  Merge_Sequential['TenMillion'] = 0
+  print('Sequential Merge Sort TenMillion Failed')
 try:
-  print('SPST Merge Sort FiftyMillion Begin')
-  data = FiftyMillion
+  print('Sequential Merge Sort FiftyMillion Begin')
+  data = FiftyMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,False)
+  mergeSort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPST['FiftyMillion'] = time.total_seconds()
-  print('SPST Merge Sort FiftyMillion Done')
+  Merge_Sequential['FiftyMillion'] = time.total_seconds()
+  print('Sequential Merge Sort FiftyMillion Done')
 except:
-  Merge_SPST['FiftyMillion'] = 0
-  print('SPST Merge Sort FiftyMillion Failed')
+  Merge_Sequential['FiftyMillion'] = 0
+  print('Sequential Merge Sort FiftyMillion Failed')
 try:
-  print('SPST Merge Sort HundredMillion Begin')
-  data = HundredMillion
+  print('Sequential Merge Sort HundredMillion Begin')
+  data = HundredMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,False)
+  mergeSort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPST['HundredMillion'] = time.total_seconds()
-  print('SPST Merge Sort HundredMillion Done')
+  Merge_Sequential['HundredMillion'] = time.total_seconds()
+  print('Sequential Merge Sort HundredMillion Done')
 except:
-  Merge_SPST['HundredMillion'] = 0
-print('SPST Merge Sort : ',Merge_SPST,'\n')
+  Merge_Sequential['HundredMillion'] = 0
+print('Sequential Merge Sort : ',Merge_Sequential,'\n')
 
-Merge_SPMT = {}
-# Single-Process Multi-Thread Merge Sort
+# Parallel Merge Sort
+Merge_Parallel = {}
 try:
-  print('SPMT Merge Sort HundredThousand Begin')
-  data = HundredThousand
+  print('Parallel Merge Sort HundredThousand Begin')
+  data = HundredThousand.copy()
   start = datetime.now()
-  mergeSort(data,False,True)
+  merge_sort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPMT['HundredThousand'] = time.total_seconds()
-  print('SPMT Merge Sort HundredThousand Done')
+  Merge_Parallel['HundredThousand'] = time.total_seconds()
+  print('Parallel Merge Sort HundredThousand Done')
 except:
-  Merge_SPMT['HundredThousand'] = 0
-  print('SPMT Sort HundredThousand Failed')
+  Merge_Parallel['HundredThousand'] = 0
+  print('Parallel Merge Sort HundredThousand Failed')
 try:
-  print('SPMT Merge Sort OneMillion Begin')
-  data = OneMillion
+  print('Parallel Merge Sort OneMillion Begin')
+  data = OneMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,True)
+  merge_sort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPMT['OneMillion'] = time.total_seconds()
-  print('SPMT Merge Sort OneMillion Done')
+  Merge_Parallel['OneMillion'] = time.total_seconds()
+  print('Parallel Merge Sort OneMillion Done')
 except:
-  Merge_SPMT['OneMillion'] = 0
-  print('SPMTg Merge Sort OneMillion Failed')
+  Merge_Parallel['OneMillion'] = 0
+  print('Parallel Merge Sort OneMillion Failed')
 try:
-  print('SPMT Merge Sort TenMillion Begin')
-  data = TenMillion
+  print('Parallel Merge Sort TenMillion Begin')
+  data = TenMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,True)
+  merge_sort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPMT['TenMillion'] = time.total_seconds()
-  print('SPMT Merge Sort TenMillion Done')
+  Merge_Parallel['TenMillion'] = time.total_seconds()
+  print('Parallel Merge Sort TenMillion Done')
 except:
-  Merge_SPMT['TenMillion'] = 0
-  print('SPMT Merge Sort TenMillion Failed')
+  Merge_Parallel['TenMillion'] = 0
+  print('Parallel Merge Sort TenMillion Failed')
 try:
-  print('SPMT Merge Sort FiftyMillion Begin')
-  data = FiftyMillion
+  print('Parallel Merge Sort FiftyMillion Begin')
+  data = FiftyMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,True)
+  merge_sort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPMT['FiftyMillion'] = time.total_seconds()
-  print('SPMT Merge Sort FiftyMillion Done')
+  Merge_Parallel['FiftyMillion'] = time.total_seconds()
+  print('Parallel Merge Sort FiftyMillion Done')
 except:
-  Merge_SPMT['FiftyMillion'] = 0
-  print('SPMT Merge Sort FiftyMillion Failed')
+  Merge_Parallel['FiftyMillion'] = 0
+  print('Parallel Merge Sort FiftyMillion Failed')
 try:
-  print('SPMT Merge Sort HundredMillion Begin')
-  data = HundredMillion
+  print('Parallel Merge Sort HundredMillion Begin')
+  data = HundredMillion.copy()
   start = datetime.now()
-  mergeSort(data,False,True)
+  merge_sort(data)
   end = datetime.now()
   time = end - start
   del data
-  Merge_SPMT['HundredMillion'] = time.total_seconds()
-  print('SPMT Merge Sort HundredMillion Done')
+  Merge_Parallel['HundredMillion'] = time.total_seconds()
+  print('Parallel Merge Sort HundredMillion Done')
 except:
-  Merge_SPMT['HundredMillion'] = 0
-print('SPMT Merge Sort : ',Merge_SPMT,'\n')
+  Merge_Parallel['HundredMillion'] = 0
+  print('Parallel Merge Sort HundredMillion Failed')
+print('Parallel Merge Sort : ',Merge_Parallel,'\n')
 
-Merge_MPMT = {}
-# Multi-Process Multi-Thread Merge Sort
+# Sequential Quick Sort
+Quick_Sequential = {}
 try:
-  print('MPMT Merge Sort HundredThousand Begin')
-  data = HundredThousand
-  start = datetime.now()
-  mergeSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Merge_MPMT['HundredThousand'] = time.total_seconds()
-  print('MPMT Merge Sort HundredThousand Done')
-except:
-  Merge_MPMT['HundredThousand'] = 0
-  print('MPMT Merge Sort HundredThousand Failed')
-try:
-  print('MPMT Merge Sort OneMillion Begin')
-  data = OneMillion
-  start = datetime.now()
-  mergeSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Merge_MPMT['OneMillion'] = time.total_seconds()
-  print('MPMT Merge Sort OneMillion Done')
-except:
-  Merge_MPMT['OneMillion'] = 0
-  print('MPMT Merge Sort OneMillion Failed')
-try:
-  print('MPMT Merge Sort TenMillion Begin')
-  data = TenMillion
-  start = datetime.now()
-  mergeSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Merge_MPMT['TenMillion'] = time.total_seconds()
-  print('MPMT Merge Sort TenMillion Done')
-except:
-  Merge_MPMT['TenMillion'] = 0
-  print('MPMT Merge Sort TenMillion Failed')
-try:
-  print('MPMT Merge Sort FiftyMillion Begin')
-  data = FiftyMillion
-  start = datetime.now()
-  mergeSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Merge_MPMT['FiftyMillion'] = time.total_seconds()
-  print('MPMT Merge Sort FiftyMillion Done')
-except:
-  Merge_MPMT['FiftyMillion'] = 0
-  print('MPMT Merge Sort FiftyMillion Failed')
-try:
-  print('MPMT Merge Sort HundredMillion Begin')
-  data = HundredMillion
-  start = datetime.now()
-  mergeSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Merge_MPMT['HundredMillion'] = time.total_seconds()
-  print('MPMT Merge Sort HundredMillion Done')
-except:
-  Merge_MPMT['HundredMillion'] = 0
-  print('MPMT Merge Sort HundredMillion Failed')
-print('MPMT Merge Sort : ',Merge_MPMT,'\n')
-
-Quick_SPST = {}
-# Single-Process Single-Thread Quick Sort
-try:
-  print('SPST Quick Sort HundredThousand Begin')
-  data = HundredThousand
+  print('Sequential Quick Sort HundredThousand Begin')
+  data = HundredThousand.copy()
   start = datetime.now()
   quickSort(data,False,False)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPST['HundredThousand'] = time.total_seconds()
-  print('SPST Quick Sort HundredThousand Done')
+  Quick_Sequential['HundredThousand'] = time.total_seconds()
+  print('Sequential Quick Sort HundredThousand Done')
 except:
-  Quick_SPST['HundredThousand'] = 0
-  print('SPST Quick Sort HundredThousand Failed')
+  Quick_Sequential['HundredThousand'] = 0
+  print('Sequential Quick Sort HundredThousand Failed')
 try:
-  print('SPST Quick Sort OneMillion Begin')
-  data = OneMillion
+  print('Sequential Quick Sort OneMillion Begin')
+  data = OneMillion.copy()
   start = datetime.now()
   quickSort(data,False,False)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPST['OneMillion'] = time.total_seconds()
-  print('SPST Quick Sort OneMillion Done')
+  Quick_Sequential['OneMillion'] = time.total_seconds()
+  print('Sequential Quick Sort OneMillion Done')
 except:
-  Quick_SPST['OneMillion'] = 0
-  print('SPST Quick Sort OneMillion Failed')
+  Quick_Sequential['OneMillion'] = 0
+  print('Sequential Quick Sort OneMillion Failed')
 try:
-  print('SPST Quick Sort TenMillion Begin')
-  data = TenMillion
+  print('Sequential Quick Sort TenMillion Begin')
+  data = TenMillion.copy()
   start = datetime.now()
   quickSort(data,False,False)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPST['TenMillion'] = time.total_seconds()
-  print('SPST Quick Sort TenMillion Done')
+  Quick_Sequential['TenMillion'] = time.total_seconds()
+  print('Sequential Quick Sort TenMillion Done')
 except:
-  Quick_SPST['TenMillion'] = 0
-  print('SPST Quick Sort TenMillion Failed')
+  Quick_Sequential['TenMillion'] = 0
+  print('Sequential Quick Sort TenMillion Failed')
 try:
-  print('SPST Quick Sort FiftyMillion Begin')
-  data = FiftyMillion
+  print('Sequential Quick Sort FiftyMillion Begin')
+  data = FiftyMillion.copy()
   start = datetime.now()
   quickSort(data,False,False)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPST['FiftyMillion'] = time.total_seconds()
-  print('SPST Quick Sort FiftyMillion Done')
+  Quick_Sequential['FiftyMillion'] = time.total_seconds()
+  print('Sequential Quick Sort FiftyMillion Done')
 except:
-  Quick_SPST['FiftyMillion'] = 0
-  print('SPST Quick Sort FiftyMillion Failed')
+  Quick_Sequential['FiftyMillion'] = 0
+  print('Sequential Quick Sort FiftyMillion Failed')
 try:
-  print('SPST Quick Sort HundredMillion Begin')
-  data = HundredMillion
+  print('Sequential Quick Sort HundredMillion Begin')
+  data = HundredMillion.copy()
   start = datetime.now()
   quickSort(data,False,False)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPST['HundredMillion'] = time.total_seconds()
-  print('SPST Quick Sort HundredMillion Done')
+  Quick_Sequential['HundredMillion'] = time.total_seconds()
+  print('Sequential Quick Sort HundredMillion Done')
 except:
-  Quick_SPST['HundredMillion'] = 0
-  print('SPST Quick Sort HundredMillion Failed')
-print('SPST Quick Sort : ',Quick_SPST,'\n')
+  Quick_Sequential['HundredMillion'] = 0
+  print('Sequential Quick Sort HundredMillion Failed')
+print('Sequential Quick Sort : ',Quick_Sequential,'\n')
 
-Quick_SPMT = {}
-# Single-Process Multi-Thread Quick Sort
+# Parallel Quick Sort
+Quick_Parallel = {}
 try:
-  print('SPMT Quick Sort HundredThousand Begin')
-  data = HundredThousand
+  print('Parallel Quick Sort HundredThousand Begin')
+  data = HundredThousand.copy()
   start = datetime.now()
-  quickSort(data,False,True)
+  quickSort(data,True,True)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPMT['HundredThousand'] = time.total_seconds()
-  print('SPMT Quick Sort HundredThousand Done')
+  Quick_Parallel['HundredThousand'] = time.total_seconds()
+  print('Parallel Quick Sort HundredThousand Done')
 except:
-  Quick_SPMT['HundredThousand'] = 0
-  print('SPMT Quick Sort HundredThousand Failed')
+  Quick_Parallel['HundredThousand'] = 0
+  print('Parallel Quick Sort HundredThousand Failed')
 try:
-  print('SPMT Quick Sort OneMillion Begin')
-  data = OneMillion
+  print('Parallel Quick Sort OneMillion Begin')
+  data = OneMillion.copy()
   start = datetime.now()
-  quickSort(data,False,True)
+  quickSort(data,True,True)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPMT['OneMillion'] = time.total_seconds()
-  print('SPMT Quick Sort OneMillion Done')
+  Quick_Parallel['OneMillion'] = time.total_seconds()
+  print('Parallel Quick Sort OneMillion Done')
 except:
-  Quick_SPMT['OneMillion'] = 0
-  print('SPMT Quick Sort OneMillion Failed')
+  Quick_Parallel['OneMillion'] = 0
+  print('Parallel Quick Sort OneMillion Failed')
 try:
-  print('SPMT Quick Sort TenMillion Begin')
-  data = TenMillion
+  print('Parallel Quick Sort TenMillion Begin')
+  data = TenMillion.copy()
   start = datetime.now()
-  quickSort(data,False,True)
+  quickSort(data,True,True)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPMT['TenMillion'] = time.total_seconds()
-  print('SPMT Quick Sort TenMillion Done')
+  Quick_Parallel['TenMillion'] = time.total_seconds()
+  print('Parallel Quick Sort TenMillion Done')
 except:
-  Quick_SPMT['TenMillion'] = 0
-  print('SPMT Quick Sort TenMillion Failed')
+  Quick_Parallel['TenMillion'] = 0
+  print('Parallel Quick Sort TenMillion Failed')
 try:
-  print('SPMT Quick Sort FiftyMillion Begin')
-  data = FiftyMillion
+  print('Parallel Quick Sort FiftyMillion Begin')
+  data = FiftyMillion.copy()
   start = datetime.now()
-  quickSort(data,False,True)
+  quickSort(data,True,True)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPMT['FiftyMillion'] = time.total_seconds()
-  print('SPMT Quick Sort FiftyMillion Done')
+  Quick_Parallel['FiftyMillion'] = time.total_seconds()
+  print('Parallel Quick Sort FiftyMillion Done')
 except:
-  Quick_SPMT['FiftyMillion'] = 0
-  print('SPMT Quick Sort FiftyMillion Failed')
+  Quick_Parallel['FiftyMillion'] = 0
+  print('Parallel Quick Sort FiftyMillion Failed')
 try:
-  print('SPMT Quick Sort HundredMillion Begin')
-  data = HundredMillion
+  print('Parallel Quick Sort HundredMillion Begin')
+  data = HundredMillion.copy()
   start = datetime.now()
-  quickSort(data,False,True)
+  quickSort(data,True,True)
   end = datetime.now()
   time = end - start
   del data
-  Quick_SPMT['HundredMillion'] = time.total_seconds()
-  print('SPMT Quick Sort HundredMillion Done')
+  Quick_Parallel['HundredMillion'] = time.total_seconds()
+  print('Parallel Quick Sort HundredMillion Done')
 except:
-  Quick_SPMT['HundredMillion'] = 0
-  print('SPMT Quick Sort HundredMillion Failed')
-print('SPMT Quick Sort : ',Quick_SPMT,'\n')
+  Quick_Parallel['HundredMillion'] = 0
+  print('Parallel Quick Sort HundredMillion Failed')
+print('Parallel Quick Sort : ',Quick_Parallel,'\n')
 
-Quick_MPMT= {}
-# Multi-Process Multi-Thread Quick Sort
-try:
-  print('MPMT Quick Sort HundredThousand Begin')
-  data = HundredThousand
-  start = datetime.now()
-  quickSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_MPMT['HundredThousand'] = time.total_seconds()
-  print('MPMT Quick Sort HundredThousand Done')
-except:
-  Quick_MPMT['HundredThousand'] = 0
-  print('MPMT Quick Sort HundredThousand Failed')
-try:
-  print('MPMT Quick Sort OneMillion Begin')
-  data = OneMillion
-  start = datetime.now()
-  quickSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_MPMT['OneMillion'] = time.total_seconds()
-  print('MPMT Quick Sort OneMillion Done')
-except:
-  Quick_MPMT['OneMillion'] = 0
-  print('MPMT Quick Sort OneMillion Failed')
-try:
-  print('MPMT Quick Sort TenMillion Begin')
-  data = TenMillion
-  start = datetime.now()
-  quickSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_MPMT['TenMillion'] = time.total_seconds()
-  print('MPMT Quick Sort TenMillion Done')
-except:
-  Quick_MPMT['TenMillion'] = 0
-  print('MPMT Quick Sort TenMillion Failed')
-try:
-  print('MPMT Quick Sort FiftyMillion Begin')
-  data = FiftyMillion
-  start = datetime.now()
-  quickSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_MPMT['FiftyMillion'] = time.total_seconds()
-  print('MPMT Quick Sort FiftyMillion Done')
-except:
-  Quick_MPMT['FiftyMillion'] = 0
-  print('MPMT Quick Sort FiftyMillion Failed')
-try:
-  print('MPMT Quick Sort HundredMillion Begin')
-  data = HundredMillion
-  start = datetime.now()
-  quickSort(data,True,True)
-  end = datetime.now()
-  time = end - start
-  del data
-  Quick_MPMT['HundredMillion'] = time.total_seconds()
-  print('MPMT Quick Sort HundredMillion Done')
-except:
-  Quick_MPMT['HundredMillion'] = 0
-  print('MPMT Quick Sort HundredMillion Failed')
-print('MPMT Quick Sort : ',Quick_MPMT,'\n')
 
 print('Plotting and Exporting Begin')
-
 x = ['100K','1M','10M','50M','100M']
 y0 = [0 for _ in range(len(x))]
 
-Quick_SPST = [Quick_SPST['HundredThousand'],Quick_SPST['OneMillion'],Quick_SPST['TenMillion'],Quick_SPST['FiftyMillion'],Quick_SPST['HundredMillion']]
-Quick_SPMT = [Quick_SPMT['HundredThousand'],Quick_SPMT['OneMillion'],Quick_SPMT['TenMillion'],Quick_SPMT['FiftyMillion'],Quick_SPMT['HundredMillion']]
-Quick_MPMT = [Quick_MPMT['HundredThousand'],Quick_MPMT['OneMillion'],Quick_MPMT['TenMillion'],Quick_MPMT['FiftyMillion'],Quick_MPMT['HundredMillion']]
-Merge_SPST = [Merge_SPST['HundredThousand'],Merge_SPST['OneMillion'],Merge_SPST['TenMillion'],Merge_SPST['FiftyMillion'],Merge_SPST['HundredMillion']]
-Merge_SPMT = [Merge_SPMT['HundredThousand'],Merge_SPMT['OneMillion'],Merge_SPMT['TenMillion'],Merge_SPMT['FiftyMillion'],Merge_SPMT['HundredMillion']]
-Merge_MPMT = [Merge_MPMT['HundredThousand'],Merge_MPMT['OneMillion'],Merge_MPMT['TenMillion'],Merge_MPMT['FiftyMillion'],Merge_MPMT['HundredMillion']]
+Quick_Sequential = [Quick_Sequential['HundredThousand'],Quick_Sequential['OneMillion'],Quick_Sequential['TenMillion'],Quick_Sequential['FiftyMillion'],Quick_Sequential['HundredMillion']]
+Quick_Parallel = [Quick_Parallel['HundredThousand'],Quick_Parallel['OneMillion'],Quick_Parallel['TenMillion'],Quick_Parallel['FiftyMillion'],Quick_Parallel['HundredMillion']]
+Merge_Sequential = [Merge_Sequential['HundredThousand'],Merge_Sequential['OneMillion'],Merge_Sequential['TenMillion'],Merge_Sequential['FiftyMillion'],Merge_Sequential['HundredMillion']]
+Merge_Parallel = [Merge_Parallel['HundredThousand'],Merge_Parallel['OneMillion'],Merge_Parallel['TenMillion'],Merge_Parallel['FiftyMillion'],Merge_Parallel['HundredMillion']]
 
-plt.plot(x, Quick_SPST, color='red', linestyle='dotted', label='Single-Process Single-Thread Quick Sort')
-plt.plot(x, Quick_SPMT, color='blue', linestyle='dotted', label='Single-Process Multi-Thread Quick Sort')
-plt.plot(x, Quick_MPMT, color='green', linestyle='dotted', label='Multi-Process Multi-Thread Quick Sort')
-plt.plot(x, Merge_SPST, color='red', label='Single-Process Single-Thread Merge Sort')
-plt.plot(x, Merge_SPMT, color='blue', label='Single-Process Multi-Thread Merge Sort')
-plt.plot(x, Merge_MPMT, color='green', label='Multi-Process Multi-Thread Merge Sort')
+# Plotting Merge Sort Metrics
+plt.plot(x, Merge_Sequential, color='blue', label='Sequential Merge Sort')
+plt.plot(x, Merge_Parallel, color='green', label='Parallel Merge Sort')
 plt.xlabel('Number of Integers to Sort')
 plt.ylabel('Time Taken in Seconds')
 plt.legend()
-plt.title('Execution Time of Sorting Algorithms')
-plt.savefig('../Plots/Sort.png', dpi=150)
+plt.title('Execution Time of Merge Sort Sorting Algorithms')
+plt.savefig('Plots/MergeSort.png', dpi=150)
+print('MergeSort.png Exported')
+plt.clf()
+
+# Plotting Quick Sort Metrics
+plt.plot(x, Quick_Sequential, color='blue', linestyle='dotted', label='Sequential Quick Sort')
+plt.plot(x, Quick_Parallel, color='green', linestyle='dotted', label='Parallel Quick Sort')
+plt.xlabel('Number of Integers to Sort')
+plt.ylabel('Time Taken in Seconds')
+plt.legend()
+plt.title('Execution Time of Quick Sort Sorting Algorithms')
+plt.savefig('Plots/QuickSort.png', dpi=150)
+print('QuickSort.png Exported')
+plt.clf()
+
+# Plotting All Metrics In One Graph
+plt.plot(x, Quick_Sequential, color='blue', linestyle='dotted', label='Sequential Quick Sort')
+plt.plot(x, Quick_Parallel, color='green', linestyle='dotted', label='Parallel Quick Sort')
+plt.plot(x, Merge_Sequential, color='blue', label='Sequential Merge Sort')
+plt.plot(x, Merge_Parallel, color='green', label='Parallel Merge Sort')
+plt.xlabel('Number of Integers to Sort')
+plt.ylabel('Time Taken in Seconds')
+plt.legend()
+plt.title('Execution Time of All Sorting Algorithms')
+plt.savefig('Plots/Sort.png', dpi=150)
 print('Sort.png Exported')
+plt.clf()
