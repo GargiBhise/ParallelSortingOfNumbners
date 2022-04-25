@@ -1,8 +1,5 @@
 import math
 import multiprocessing
-import random
-import sys
-import time
 
 def merge(*args):
     # Support explicit left/right args, as well as a two-item
@@ -54,11 +51,3 @@ def merge_sort_parallel(data):
         data = [(data[i], data[i + 1]) for i in range(0, len(data), 2)]
         data = pool.map(merge, data) + ([extra] if extra else [])
     return data[0]
-
-if __name__ == "__main__":
-    size = int(sys.argv[-1]) if sys.argv[-1].isdigit() else 1000
-    data_unsorted = [random.randint(0, size) for _ in range(size)]
-    for sort in merge_sort, merge_sort_parallel:
-        start = time.time()
-        data_sorted = sort(data_unsorted)
-        end = time.time() - start
