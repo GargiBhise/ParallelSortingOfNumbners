@@ -1,0 +1,1 @@
+# This Folder Contains Generated Graphs in PNG Format
