@@ -1,1 +1,1 @@
-# Comparative Study of Sorting Of 1 Billion Numbers through Parallel Computaiton
+# Comparative Study of Sorting Of 100 Million Numbers through Parallel Computation
